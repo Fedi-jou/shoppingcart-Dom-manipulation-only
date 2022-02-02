@@ -10,6 +10,8 @@ let alladd = document.getElementsByClassName("add");
 var totalitems = 0;
 var totalamount = 0;
 
+//------- Functions --------
+
 function additem() {
   for (let i = 0; i < plus.length; i++) {
     let button = plus[i];
@@ -82,8 +84,8 @@ function removeacard() {
 function likebutton() {
   let like = document.getElementsByClassName("like");
   for (let i = 0; i < like.length; i++) {
-    like[i].addEventListener("click", function (event) {
-      event.target.classList.toggle("liked");
+    like[i].addEventListener("click", function () {
+      like[i].classList.toggle("liked");
     });
   }
 }
@@ -91,15 +93,18 @@ function likebutton() {
 function changeaddtext() {
   let modified = totalitems;
   for (let i = 0; i < alladd.length; i++) {
-    alladd[i].addEventListener("click", function (event) {
-      if (modified === totalitems) {
-        event.target.value = "Add";
+    alladd[i].addEventListener("click", function () {
+      if (modified === totalitems || counts[i].value == 0) {
+        // the second condition is to avoid the added msg when a card gets emptied out
+        alladd[i].value = "Add";
       } else {
-        event.target.value = "Added";
+        alladd[i].value = "Added";
       }
     });
   }
 }
+
+// -----Functions Call--------
 
 additem();
 removeitem();
